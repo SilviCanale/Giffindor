@@ -1,6 +1,8 @@
-from flask import Flask
+from flask import Flask, render_template
+import requests
 app = Flask(__name__)
 
 @app.route("/")
-def index():
-    return "Hola Mundo!"
+def primer_challenge():
+    return render_template("index.html")
+
