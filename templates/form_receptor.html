@@ -7,9 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/formulario/usuario" method="post">
-        <label for="nombreUser">Ingresa un dato</label>
-        <input type="text" name="nombreUser"><br/>
+    <form action="/api/v1" method="POST">
+        <label for="nombre">Ingresa su nombre</label>
+        <input type="text" name="nombre"><br/>
+        <label for="apellido">Ingresa su apellido</label>
+        <input type="text" name="apellido"><br/>
 
         <input type="submit" value="Enviar" />
 

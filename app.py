@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from config import config
 from models import db, Residente_envia, Residente_recibe, Involucrado
 import requests
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -54,6 +55,29 @@ def usuario():
 
     #Retornamos la respuesta
     return "<h1>Bienvenido " + nombreUser + " ya estas inscripto</h1>"
+
+# Ahora creamos la ruta para recepcion de los datos desde el form_receptor
+@app.route('/api/v1',methods=['POST'])
+def apiv1():
+    datos_receptor=request.form
+    print(datos_receptor)
+    fecha_actual=datetime.now()
+    residente_recibe=Residente_recibe.create(
+    nombre=datos_receptor["nombre"], 
+    apellido=datos_receptor["apellido"], 
+    cedula_identidad=2240395, 
+    edad=35, 
+    telefono=981427380, 
+    latitud=25.25, 
+    longitud=52.52, 
+    fecha_registro=fecha_actual
+    )
+    return render_template("form_receptor.html")
+
+
+
+
+
 
 
 if __name__ == '__main__':
