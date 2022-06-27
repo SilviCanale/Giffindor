@@ -8,7 +8,7 @@ class Residente_recibe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(50))
     apellido = db.Column(db.String(50))
-    cedula_identidad = db.Column(db.Integer, unique=True, nullable=False)
+    cedula_identidad = db.Column(db.Integer, unique=True)
     edad = db.Column(db.Integer)
     telefono= db.Column(db.Integer)
     latitud = db.Column(db.Float)
