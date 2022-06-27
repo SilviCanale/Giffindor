@@ -55,8 +55,19 @@ def usuario():
     #Retornamos la respuesta
     return "<h1>Bienvenido " + nombreUser + " ya estas inscripto</h1>"
 
+@app.route("/api/v1", methods =['POST'])  # info de afuera
+def apiv1():
+    datos_receptor = request.form
+    print(datos_receptor)
+
+    return render_template("form_receptor.html")
+
+
+
+    
 
 if __name__ == '__main__':
     #Iniciamos la aplicacion en modo debug
     app.run(debug=True)
+
 
