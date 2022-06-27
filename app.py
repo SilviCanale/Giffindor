@@ -65,20 +65,49 @@ def apiv1():
     residente_recibe=Residente_recibe.create(
     nombre=datos_receptor["nombre"], 
     apellido=datos_receptor["apellido"], 
-    cedula_identidad=2240395, 
-    edad=35, 
-    telefono=981427380, 
-    latitud=25.25, 
-    longitud=52.52, 
+    cedula_identidad=datos_receptor["cedula_identidad"],
+    edad=datos_receptor["edad"],
+    telefono=datos_receptor["telefono"], 
+    latitud=datos_receptor["latitud"], 
+    longitud=datos_receptor["longitud"], 
     fecha_registro=fecha_actual
     )
     return render_template("form_receptor.html")
 
 
+# Ahora creamos la ruta para recepcion de los datos desde el form_informer
+@app.route('/api/v2',methods=['POST'])
+def apiv2():
+    datos_informer=request.form
+    print(datos_informer)
+    fecha_actual=datetime.now()
+    residente_envia=Residente_envia.create(
+    nombre=datos_informer["nombre"], 
+    apellido=datos_informer["apellido"], 
+    cedula_identidad=datos_informer["cedula_identidad"],
+    edad=datos_informer["edad"],
+    telefono=datos_informer["telefono"], 
+    latitud=datos_informer["latitud"], 
+    longitud=datos_informer["longitud"], 
+    fecha_registro=fecha_actual
+    )
+    return render_template("form_informer.html")
 
-
-
-
+# Ahora creamos la ruta para recepcion de los datos desde el form_involved
+@app.route('/api/v3',methods=['POST'])
+def apiv3():
+    datos_involved=request.form
+    print(datos_involved)
+    fecha_actual=datetime.now()
+    involucrado=Involucrado.create(
+    nombre=datos_involved["nombre"], 
+    apellido=datos_involved["apellido"], 
+    cedula_identidad=datos_involved["cedula_identidad"],
+    telefono=datos_involved["telefono"], 
+    servicio_a_ofrecer=datos_involved["servicio_a_ofrecer"],
+    fecha_registro=fecha_actual
+    )
+    return render_template("form_involved.html")
 
 if __name__ == '__main__':
     #Iniciamos la aplicacion en modo debug

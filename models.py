@@ -99,19 +99,19 @@ class Residente_envia(db.Model):
             'fecha_registro': self.fecha_registro
         }
 class Involucrado(db.Model):
-    _tablename_ = "Involucrado"
+    _tablename_ = "involucrado"
     
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(50))
     apellido = db.Column(db.String(50))
-    cedula = db.Column(db.String(50),unique = True, nullable =False)
+    cedula_identidad = db.Column(db.Integer, unique = True, nullable =False)
     telefono = db.Column(db.String(50),unique = True, nullable =False)
     servicio_a_ofrecer = db.Column(db.String(50))
     fecha_registro = db.Column(db.DateTime)
 
     @classmethod
-    def create(cls, nombre, apellido, cedula, telefono, servicio_a_ofrecer, fecha_registro):
-        afectado = Residente_envia(nombre=nombre, apellido=apellido,cedula=cedula, telefono = telefono, servicio_a_ofrecer = servicio_a_ofrecer, fecha_registro=fecha_registro)
+    def create(cls, nombre, apellido, cedula_identidad, telefono, servicio_a_ofrecer, fecha_registro):
+        afectado = Involucrado(nombre=nombre, apellido=apellido,cedula_identidad=cedula_identidad, telefono = telefono, servicio_a_ofrecer = servicio_a_ofrecer, fecha_registro=fecha_registro)
         return afectado.save()
     
     def save(self):
@@ -137,8 +137,8 @@ class Involucrado(db.Model):
             'id': self.id,
             'nombre': self.nombre,
             'apellido': self.apellido,
-            'cedula' : self.cedula,
-            'telefono' : self.telefono,
-            'servicio_a_ofrecer' : self.servicio_a_ofrecer,
+            'cedula_identidad': self.cedula_identidad,
+            'telefono': self.telefono,
+            'servicio_a_ofrecer': self.servicio_a_ofrecer,
             'fecha_registro': self.fecha_registro
         }
