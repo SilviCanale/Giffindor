@@ -59,6 +59,7 @@ def usuario():
 @app.route("/api/v1", methods =['POST'])  # info de afuera
 def apiv1():
 <<<<<<< HEAD
+<<<<<<< HEAD
     datos_receptor=request.form
     print(datos_receptor)
     fecha_actual=datetime.now()
@@ -72,6 +73,8 @@ def apiv1():
     longitud=datos_receptor["longitud"], 
     fecha_registro=fecha_actual
 =======
+=======
+>>>>>>> 11a631ac5c8a3fefaa264e83dcbff5c23687e1c0
     datos_receptor = request.form #liberia que interpreta los datos que recibe del form es el request
     print(datos_receptor)  #y los guarda en receptor
 
@@ -86,6 +89,9 @@ def apiv1():
         latitud=-55.355, 
         longitud=522.55, 
         fecha_registro= fecha_actual
+<<<<<<< HEAD
+>>>>>>> 11a631ac5c8a3fefaa264e83dcbff5c23687e1c0
+=======
 >>>>>>> 11a631ac5c8a3fefaa264e83dcbff5c23687e1c0
     )
 
@@ -111,6 +117,7 @@ def apiv2():
     return render_template("form_informer.html")
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Ahora creamos la ruta para recepcion de los datos desde el form_involved
 @app.route('/api/v3',methods=['POST'])
 def apiv3():
@@ -126,6 +133,9 @@ def apiv3():
     fecha_registro=fecha_actual
     )
     return render_template("form_involved.html")
+=======
+    
+>>>>>>> 11a631ac5c8a3fefaa264e83dcbff5c23687e1c0
 =======
     
 >>>>>>> 11a631ac5c8a3fefaa264e83dcbff5c23687e1c0
