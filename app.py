@@ -4,6 +4,9 @@ from config import config
 from models import db, Residente_envia, Residente_recibe, Involucrado
 import requests
 from datetime import datetime
+import folium
+from folium.plugins import MarkerCluster
+
 
 
 app = Flask(__name__)
@@ -71,7 +74,7 @@ def apiv1():
     latitud=datos_receptor["latitud"], 
     longitud=datos_receptor["longitud"], 
     fecha_registro=fecha_actual)
-    
+
     return render_template("form_receptor.html")
 
 
@@ -111,10 +114,36 @@ def apiv3():
     return render_template("form_involved.html")
 
 
+
+@app.route('/mapa')
+def mapa():
+    #mapa=folium.Map(location=[-25.3011646,-57.6320055],zoom_start=13)
+    #cluster=MarkerCluster().add_to(mapa)
+    
+    ##Resindentes que quieren recibir alertas
+    lista_coordenadas_recibe=Residente_recibe.query.all()
+    print(lista_coordenadas_recibe)
+    extracion_coordenadas_recibe=[]
+    for i in lista_coordenadas_recibe:
+        coordenadas_especificas_residente_recibe_lat_lon=[i.latitud , i.longitud]  
+        extracion_coordenadas_recibe.append(coordenadas_especificas_residente_recibe_lat_lon) 
+    print(extracion_coordenadas_recibe) 
+
+    ##Resindentes que quieren envien alertas
+    lista_coordenadas_envia=Residente_envia.query.all()
+    print(lista_coordenadas_envia)
+    extracion_coordenadas_envia=[]
+    for i in lista_coordenadas_envia:
+        coordenadas_especificas_residente_envia_lat_lon=[i.latitud , i.longitud]  
+        extracion_coordenadas_envia.append(coordenadas_especificas_residente_envia_lat_lon) 
+    print(extracion_coordenadas_envia) 
+
+
+
+    return render_template("mapa.html")
+
 # hola esto es un comentario
 
 if __name__ == '__main__':
     #Iniciamos la aplicacion en modo debug
     app.run(debug=True)
-
-
