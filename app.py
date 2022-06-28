@@ -71,23 +71,7 @@ def apiv1():
     latitud=datos_receptor["latitud"], 
     longitud=datos_receptor["longitud"], 
     fecha_registro=fecha_actual)
-
-    datos_receptor = request.form #liberia que interpreta los datos que recibe del form es el request
-    print(datos_receptor)  #y los guarda en receptor
-
-    fecha_actual = datetime.now()
-
-    residente_recibe = Residente_recibe.create( 
-        nombre= datos_receptor["nombre"], 
-        apellido= datos_receptor["apellido"], 
-        cedula_identidad=datos_receptor["cedula_identidad"],
-        edad=datos_receptor["edad"],
-        telefono=datos_receptor["telefono"], 
-        latitud=datos_receptor["latitud"], 
-        longitud=datos_receptor["longitud"], 
-        fecha_registro=fecha_actual)
     
-
     return render_template("form_receptor.html")
 
 
