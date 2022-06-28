@@ -56,7 +56,7 @@ def usuario():
     #Retornamos la respuesta
     return "<h1>Bienvenido " + nombreUser + " ya estas inscripto</h1>"
 
-@app.route("/api/v1", methods =['POST'])  # info de afuera
+@app.route("/api/v1", methods =['POST'])
 def apiv1():
 
     datos_receptor=request.form
@@ -80,13 +80,13 @@ def apiv1():
     residente_recibe = Residente_recibe.create( 
         nombre= datos_receptor["nombre"], 
         apellido= datos_receptor["apellido"], 
-        cedula_identidad=5957862, 
-        edad=66, 
-        telefono=2556616, 
-        latitud=-55.355, 
-        longitud=522.55, 
-        fecha_registro= fecha_actual
-    )
+        cedula_identidad=datos_receptor["cedula_identidad"],
+        edad=datos_receptor["edad"],
+        telefono=datos_receptor["telefono"], 
+        latitud=datos_receptor["latitud"], 
+        longitud=datos_receptor["longitud"], 
+        fecha_registro=fecha_actual)
+    
 
     return render_template("form_receptor.html")
 
